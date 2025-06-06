@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>nidhi.g : RingCentral WebSocket with statuses</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">nidhi.g</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Overview_1547436107.html">Overview</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            nidhi.g : RingCentral WebSocket with statuses
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Nidhi Gajera</span>, last modified on 13 Nov 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><strong>Purpose:</strong> Incoming/Outgoing Call</p><p><strong>Events:</strong></p><p>Account level (commercial,entreprise) : <code>/restapi/v1.0/account/accountId/telephony/sessions</code></p><p><del>User level (with assigned extension):  /restapi/v1.0/account/accountId/extension/extensionId/telephony/sessions</del></p><p>In our case we need to listen for below actions:</p><ul><li><p>Call started and call ended</p></li><li><p>Missed call</p></li><li><p>Presence/availability changed (based on account or extension)</p></li></ul><p><strong>Statuses : </strong>Same for Inbound and Outbound</p><div class="table-wrap"><table data-table-width="1800" data-layout="align-start" data-local-id="023c9cda-5f9d-42d5-8b7b-e489226c4287" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Status</strong></p></th><th class="confluenceTh"><p><strong>Action</strong></p></th><th class="confluenceTh"><p><strong>Wireframe</strong></p></th><th class="confluenceTh"><p /></th></tr><tr><td class="confluenceTd"><p>Setup</p></td><td class="confluenceTd"><p>The call is initiating </p></td><td class="confluenceTd"><p><a class="external-link" data-card-appearance="inline" href="https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-21492&amp;node-type=frame&amp;m=dev" rel="nofollow">https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-21492&amp;node-type=frame&amp;m=dev</a>  </p></td><td class="confluenceTd"><p>We’ll start gathering the patient data name, number etc. </p></td></tr><tr><td class="confluenceTd"><p>Proceeding</p></td><td class="confluenceTd"><p>The call is ringing</p></td><td class="confluenceTd"><p><a class="external-link" data-card-appearance="inline" href="https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-21492&amp;node-type=frame&amp;m=dev" rel="nofollow">https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-21492&amp;node-type=frame&amp;m=dev</a>  </p></td><td class="confluenceTd"><p /></td></tr><tr><td class="confluenceTd"><p>Answered</p></td><td class="confluenceTd"><p>The call is connected</p></td><td class="confluenceTd"><p><a class="external-link" data-card-appearance="inline" href="https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-22375&amp;node-type=frame&amp;m=dev" rel="nofollow">https://www.figma.com/design/EW5QRhksgecnWla4AKRdJ9/Voice-Communication?node-id=3352-22375&amp;node-type=frame&amp;m=dev</a>  </p></td><td class="confluenceTd"><p /></td></tr><tr><td class="confluenceTd"><p>Disconnected</p><div id="expander-1753379063" class="expand-container"><div id="expander-control-1753379063" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">For missed calls, the object will have an extra parameter </span></div><div id="expander-content-1753379063" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence" data-theme="Confluence">&quot;status&quot;: {
+    &quot;code&quot;: &quot;Setup&quot;,
+    &quot;rcc&quot;: false,
+    &quot;reason&quot; : &quot;CallerDropped&quot;
+},
+&quot;missedCall&quot;:true</pre>
+</div></div></div></div></td><td class="confluenceTd"><p>The call is disconnected</p></td><td class="confluenceTd"><p /></td><td class="confluenceTd"><p>The <code>status </code>object will have extra value <strong>reason </strong>and the <code>missedCall</code> flag will be <strong>true</strong>.</p></td></tr><tr><td class="confluenceTd"><p>Hold</p></td><td class="confluenceTd"><p>The call is on hold</p></td><td class="confluenceTd"><p /></td><td class="confluenceTd"><p>For the future</p></td></tr></tbody></table></div><p><strong>Example: </strong><br/><code>/restapi/v1.0/account/762841017/extension/62771648016/telephony/sessions</code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence" data-theme="Confluence">{
+    &quot;uuid&quot;: &quot;4189143877016221482&quot;,
+    &quot;event&quot;: &quot;/restapi/v1.0/account/762841017/extension/62771648016/telephony/sessions&quot;,
+    &quot;timestamp&quot;: &quot;2024-11-07T21:13:53.575Z&quot;,
+    &quot;subscriptionId&quot;: &quot;a7ad5e76-970f-48cc-b502-caaa5025501e&quot;,
+    &quot;ownerId&quot;: &quot;62771648016&quot;,
+    &quot;body&quot;: {
+        &quot;sequence&quot;: 3,
+        &quot;sessionId&quot;: &quot;889640877017&quot;,
+        &quot;telephonySessionId&quot;: &quot;s-a0e172805034az193087a004fz1734b580000&quot;,
+        &quot;serverId&quot;: &quot;10.14.23.40.TAM&quot;,
+        &quot;eventTime&quot;: &quot;2024-11-07T21:13:53.535Z&quot;,
+        &quot;parties&quot;: [
+            {
+                &quot;accountId&quot;: &quot;762841017&quot;,
+                &quot;extensionId&quot;: &quot;62771648016&quot;,
+                &quot;id&quot;: &quot;p-a0e172805034az193087a004fz1734b580000-2&quot;,
+                &quot;direction&quot;: &quot;Inbound&quot;,
+                &quot;to&quot;: {
+                    &quot;phoneNumber&quot;: &quot;+12362596360&quot;,
+                    &quot;name&quot;: &quot;Nidhi Gajera&quot;,
+                    &quot;extensionId&quot;: &quot;62771648016&quot;
+                },
+                &quot;from&quot;: {
+                    &quot;phoneNumber&quot;: &quot;+18073566843&quot;,
+                    &quot;name&quot;: &quot;THUNDER BAY  ON&quot;
+                },
+                &quot;status&quot;: {
+                    &quot;code&quot;: &quot;Setup&quot;,
+                    &quot;rcc&quot;: false
+                },
+                &quot;park&quot;: {},
+                &quot;missedCall&quot;: false,
+                &quot;standAlone&quot;: false,
+                &quot;muted&quot;: false
+            }
+        ],
+        &quot;origin&quot;: {
+            &quot;type&quot;: &quot;Call&quot;
+        }
+    }
+}</pre>
+</div></div><p /><p>The RC websocket fires multiple events on each status, for Inbound, Outbound, and sometimes multiple for Inbound. We can overcome using <code>sequence</code> value for each call.</p><p><strong>Example</strong>: if call is in <strong>Answered </strong>status, there’ll be 2 events, one for Incoming and one for Outgoing.</p><p><br/>In our case, we can use the combination of <code>sequence</code>, <code>telephonySessionId</code>, <code>parties[0].direction</code>, <code>parties[0].status</code> to identify the call progress and to show the UI accordingly via react global state. However, Since we need a call-control application, we can rely on <code>telephonySessionId</code> to monitor each call.</p><p /><p>References:</p><p><a class="external-link" data-card-appearance="inline" href="https://developers.ringcentral.com/api-reference/Account-Telephony-Sessions-Event" rel="nofollow">https://developers.ringcentral.com/api-reference/Account-Telephony-Sessions-Event</a> </p>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on 06 Jun 2025 20:18</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
