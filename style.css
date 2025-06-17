@@ -147,3 +147,44 @@ a:hover {
 #footer-logo a:hover {
     text-decoration: underline;
 }
+
+.breadcrumb-section {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-section .breadcrumbs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.breadcrumb-section .breadcrumbs li {
+    margin-right: 5px;
+}
+
+.breadcrumb-section .breadcrumbs li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.breadcrumb-section .breadcrumbs li a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-section .breadcrumbs li.first {
+    font-weight: bold;
+}
+
+.breadcrumb-section .breadcrumbs li.first span {
+    font-weight: normal;
+}
+
+.breadcrumb-section .breadcrumbs li.first span a {
+    color: #000;
+}
+
+.breadcrumb-section .breadcrumbs li.first span a:hover {
+    color: #0056b3;
+}
