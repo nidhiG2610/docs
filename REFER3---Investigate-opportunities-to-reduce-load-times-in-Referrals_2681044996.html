@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>REFER3 - Investigate opportunities to reduce load times in Referrals</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
+
 <body>
     <div class="container">
         <h1>REFER3 - Investigate opportunities to reduce load times in Referrals</h1>
@@ -12,21 +14,28 @@
         <h2>Opportunities to improve</h2>
         <h3>Quick investigations</h3>
         <ul>
-            <li>Referral patient reports are mainly rendered using jQuery. Make sure to always commit minified JS compiled files.</li>
+            <li>Referral patient reports are mainly rendered using jQuery. Make sure to always commit minified JS
+                compiled files.</li>
             <li>Select only required columns and use eager-loading.</li>
         </ul>
 
         <h3>Deep investigations</h3>
         <ul>
             <li>
-                A query to filter out referrals belonging to accounts whose status is <strong>Hidden</strong>, <strong>Denied</strong>, or <strong>Hidden and Awaiting approval</strong> is running multiple times on a pivot table to fetch <code>referral_account_status_id</code>.<br>
+                A query to filter out referrals belonging to accounts whose status is <strong>Hidden</strong>,
+                <strong>Denied</strong>, or <strong>Hidden and Awaiting approval</strong> is running multiple times on a
+                pivot table to fetch <code>referral_account_status_id</code>.<br>
                 See:
-                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-321" target="_blank">ReferralManagementRepository.php#L321</a>
+                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-321"
+                    target="_blank">ReferralManagementRepository.php#L321</a>
                 and
-                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-401" target="_blank">ReferralManagementRepository.php#L401</a>
+                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-401"
+                    target="_blank">ReferralManagementRepository.php#L401</a>
             </li>
             <li>
-                Simplify this by eager loading those relations and finding status later when looping through the referrals. This will fetch all the partner offices of a sender for each referral, which can be monitored and improved (by using <code>session_account_id</code>) in the future if it’s causing trouble.
+                Simplify this by eager loading those relations and finding status later when looping through the
+                referrals. This will fetch all the partner offices of a sender for each referral, which can be monitored
+                and improved (by using <code>session_account_id</code>) in the future if it’s causing trouble.
             </li>
         </ul>
         <div class="note">
@@ -34,4 +43,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>nidhi.g : Validation for Phone number</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">nidhi.g</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Overview_1547436107.html">Overview</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            nidhi.g : Validation for Phone number
-                        </span>
-                    </h1>
+<head>
+    <title>nidhi.g : Validation for Phone number</title>
+    <link rel="stylesheet" href="styles/site.css" type="text/css" />
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body class="theme-default aui-theme-default">
+    <div id="page">
+        <div id="main" class="aui-page-panel">
+            <div id="main-header">
+                <div id="breadcrumb-section">
+                    <ol id="breadcrumbs">
+                        <li class="first">
+                            <span><a href="index.html">nidhi.g</a></span>
+                        </li>
+                        <li>
+                            <span><a href="Overview_1547436107.html">Overview</a></span>
+                        </li>
+                    </ol>
                 </div>
+                <h1 id="title-heading" class="pagetitle">
+                    <span id="title-text">
+                        nidhi.g : Validation for Phone number
+                    </span>
+                </h1>
+            </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                            
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Nidhi Gajera</span>, last modified on 16 May 2025
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Validate a patient’s contact number to see if it is valid, activated, and registered with an actual number.</p><p>Twilio provides a basic lookup API request for <strong>free</strong>.</p><p>Lookup API : <a class="external-link" data-card-appearance="inline" href="https://www.twilio.com/docs/lookup/v2-api" rel="nofollow">https://www.twilio.com/docs/lookup/v2-api</a> <br/>At this point, we only need to validate the phone_number which can be done by the basic API request. We will need their data-package for any advanced information. </p><blockquote><p>The <strong>Lookup API</strong> allows you to query information on a phone number so that you can make a trusted interaction with your user. With this endpoint, you can format and validate phone numbers with the free <a class="external-link" href="https://www.twilio.com/docs/lookup/v2-api#making-a-request" rel="nofollow"><u>Basic Lookup request</u></a> and add on <a class="external-link" href="https://www.twilio.com/docs/lookup/v2-api#data-packages" rel="nofollow"><u>data packages</u></a> to get even more in-depth carrier and caller information.</p></blockquote><p>The basic code structure could be like this,</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence" data-theme="Confluence">$accountId = 6;
+            <div id="content" class="view">
+                <div class="page-metadata">
+
+
+
+
+
+
+
+                    Created by <span class='author'> Nidhi Gajera</span>, last modified on 16 May 2025
+                </div>
+                <div id="main-content" class="wiki-content group">
+                    <p>Validate a patient’s contact number to see if it is valid, activated, and registered with an
+                        actual number.</p>
+                    <p>Twilio provides a basic lookup API request for <strong>free</strong>.</p>
+                    <p>Lookup API : <a class="external-link" data-card-appearance="inline"
+                            href="https://www.twilio.com/docs/lookup/v2-api"
+                            rel="nofollow">https://www.twilio.com/docs/lookup/v2-api</a> <br />At this point, we only
+                        need to validate the phone_number which can be done by the basic API request. We will need their
+                        data-package for any advanced information. </p>
+                    <blockquote>
+                        <p>The <strong>Lookup API</strong> allows you to query information on a phone number so that you
+                            can make a trusted interaction with your user. With this endpoint, you can format and
+                            validate phone numbers with the free <a class="external-link"
+                                href="https://www.twilio.com/docs/lookup/v2-api#making-a-request"
+                                rel="nofollow"><u>Basic Lookup request</u></a> and add on <a class="external-link"
+                                href="https://www.twilio.com/docs/lookup/v2-api#data-packages" rel="nofollow"><u>data
+                                    packages</u></a> to get even more in-depth carrier and caller information.</p>
+                    </blockquote>
+                    <p>The basic code structure could be like this,</p>
+                    <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                            <pre class="syntaxhighlighter-pre"
+                                data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence"
+                                data-theme="Confluence">$accountId = 6;
 $headAccountID = 0;
 $patId = 3350;
 // Get patient based on PAT_ID
@@ -62,8 +84,16 @@ public function isPhoneValidatedByTwilio(string $number = &#39;&#39;): bool
 
         return  $phone_number-&gt;valid;
   }</pre>
-</div></div><p>Here’s the response for valid and invalid phone_number, though we only need the “valid” property to check for basic things that are <strong>free</strong>.</p><p>Response for <strong>invalid</strong> phone_number:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence" data-theme="Confluence">[
+                        </div>
+                    </div>
+                    <p>Here’s the response for valid and invalid phone_number, though we only need the “valid” property
+                        to check for basic things that are <strong>free</strong>.</p>
+                    <p>Response for <strong>invalid</strong> phone_number:</p>
+                    <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                            <pre class="syntaxhighlighter-pre"
+                                data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence"
+                                data-theme="Confluence">[
     &quot;callingCountryCode&quot; =&gt; null
     &quot;countryCode&quot; =&gt; null
     &quot;phoneNumber&quot; =&gt; &quot;+11112223333&quot;
@@ -82,8 +112,15 @@ public function isPhoneValidatedByTwilio(string $number = &#39;&#39;): bool
     &quot;disposablePhoneNumberRisk&quot; =&gt; null
     &quot;url&quot; =&gt; &quot;https://lookups.twilio.com/v2/PhoneNumbers/+11112223333&quot;
   ]</pre>
-</div></div><p /><p>Response for <strong>valid </strong>phone_number</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence" data-theme="Confluence">[
+                        </div>
+                    </div>
+                    <p />
+                    <p>Response for <strong>valid </strong>phone_number</p>
+                    <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                            <pre class="syntaxhighlighter-pre"
+                                data-syntaxhighlighter-params="brush: php; gutter: false; theme: Confluence"
+                                data-theme="Confluence">[
     &quot;callingCountryCode&quot; =&gt; &quot;1&quot;
     &quot;countryCode&quot; =&gt; &quot;CA&quot;
     &quot;phoneNumber&quot; =&gt; &quot;+18073566843&quot;
@@ -100,17 +137,46 @@ public function isPhoneValidatedByTwilio(string $number = &#39;&#39;): bool
     &quot;disposablePhoneNumberRisk&quot; =&gt; null
     &quot;url&quot; =&gt; &quot;https://lookups.twilio.com/v2/PhoneNumbers/+18073566843&quot;
   ]</pre>
-</div></div><h3 id="ValidationforPhonenumber-Doweneedtosetaregionsupport?"><img class="emoticon emoticon-blue-star" data-emoji-id="2753" data-emoji-shortname=":question:" data-emoji-fallback="❓" src="images/icons/emoticons/72/2753.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/> Do we need to set a region support?</h3><p>  <a class="external-link" data-card-appearance="inline" href="https://www.twilio.com/docs/lookup/v2-api#regions-support" rel="nofollow">https://www.twilio.com/docs/lookup/v2-api#regions-support</a> <br/>It supports US/CAN regions for sure. Though what about <em><strong>de1</strong></em> <em><strong>zone</strong></em>?</p><p /><h3 id="ValidationforPhonenumber-Stability:">Stability:</h3><p>Though they’ve scheduled maintenance<a class="external-link" data-card-appearance="inline" href="https://status.twilio.com/" rel="nofollow">https://status.twilio.com/</a>, we need to find a way to handle it in a situation like this.</p><p /><h3 id="ValidationforPhonenumber-Ratelimit:">Rate limit: </h3><p>Though twilio APIs have rate limits, there’s no concrete evidence available for this specific to this API. In any case, this will be used as a fallback logic, when no jobs/recalls are available for a patient. </p><h3 id="ValidationforPhonenumber-Prototype:"><strong> Prototype:</strong></h3><p><a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/easymarkit/intiveo-package/branch/EMP-99999-twilio-lookup-api-to-validate-phone_number" rel="nofollow">https://bitbucket.org/easymarkit/intiveo-package/branch/EMP-99999-twilio-lookup-api-to-validate-phone_number</a> </p><p />
+                        </div>
                     </div>
+                    <h3 id="ValidationforPhonenumber-Doweneedtosetaregionsupport?"><img
+                            class="emoticon emoticon-blue-star" data-emoji-id="2753" data-emoji-shortname=":question:"
+                            data-emoji-fallback="❓" src="images/icons/emoticons/72/2753.png" width="16" height="16"
+                            data-emoticon-name="blue-star" alt="(blue star)" /> Do we need to set a region support?</h3>
+                    <p> <a class="external-link" data-card-appearance="inline"
+                            href="https://www.twilio.com/docs/lookup/v2-api#regions-support"
+                            rel="nofollow">https://www.twilio.com/docs/lookup/v2-api#regions-support</a> <br />It
+                        supports US/CAN regions for sure. Though what about <em><strong>de1</strong></em>
+                        <em><strong>zone</strong></em>?</p>
+                    <p />
+                    <h3 id="ValidationforPhonenumber-Stability:">Stability:</h3>
+                    <p>Though they’ve scheduled maintenance<a class="external-link" data-card-appearance="inline"
+                            href="https://status.twilio.com/" rel="nofollow">https://status.twilio.com/</a>, we need to
+                        find a way to handle it in a situation like this.</p>
+                    <p />
+                    <h3 id="ValidationforPhonenumber-Ratelimit:">Rate limit: </h3>
+                    <p>Though twilio APIs have rate limits, there’s no concrete evidence available for this specific to
+                        this API. In any case, this will be used as a fallback logic, when no jobs/recalls are available
+                        for a patient. </p>
+                    <h3 id="ValidationforPhonenumber-Prototype:"><strong> Prototype:</strong></h3>
+                    <p><a class="external-link" data-card-appearance="inline"
+                            href="https://bitbucket.org/easymarkit/intiveo-package/branch/EMP-99999-twilio-lookup-api-to-validate-phone_number"
+                            rel="nofollow">https://bitbucket.org/easymarkit/intiveo-package/branch/EMP-99999-twilio-lookup-api-to-validate-phone_number</a>
+                    </p>
+                    <p />
+                </div>
 
-                    
-                                                      
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on 06 Jun 2025 20:18</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
+
             </div>
-        </div>     </body>
+        </div>
+        <div id="footer" role="contentinfo">
+            <section class="footer-body">
+                <p>Document generated by Confluence on 06 Jun 2025 20:18</p>
+                <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+            </section>
+        </div>
+    </div>
+</body>
+
 </html>

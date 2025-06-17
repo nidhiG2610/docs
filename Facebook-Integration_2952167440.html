@@ -1,55 +1,130 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>nidhi.g : Facebook Integration</title>
-        <link rel="stylesheet" href="style.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">nidhi.g</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Overview_1547436107.html">Overview</a></span>
-                            </li>
-                                                </ol>
+<head>
+    <title>nidhi.g : Facebook Integration</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body class="theme-default aui-theme-default">
+    <div id="page">
+        <div id="main" class="aui-page-panel">
+            <div id="main-header">
+                <div id="breadcrumb-section">
+                    <ol id="breadcrumbs">
+                        <li class="first">
+                            <span><a href="index.html">nidhi.g</a></span>
+                        </li>
+                        <li>
+                            <span><a href="Overview_1547436107.html">Overview</a></span>
+                        </li>
+                    </ol>
+                </div>
+                <h1 id="title-heading" class="pagetitle">
+                    <span id="title-text">
+                        nidhi.g : Facebook Integration
+                    </span>
+                </h1>
+            </div>
+
+            <div id="content" class="view">
+                <div class="page-metadata">
+
+
+
+
+
+
+
+                    Created by <span class='author'> Nidhi Gajera</span>, last modified on 16 May 2025
+                </div>
+                <div id="main-content" class="wiki-content group">
+                    <p>Confirm if the credentials are correct,<br /><strong>lastpass </strong>vs <strong>envs</strong>
+                    </p>
+                    <p><br />Facebook integration is being used for social reviews as below:<br />1. <strong>Messages
+                        </strong>&gt; <strong>Social Reviews</strong> &gt; <strong>Setup </strong>&gt; <strong>Social
+                            Media Accounts</strong></p>
+                    <p style="margin-left: 30.0px;">We determine and display if it’s connected or not.</p>
+                    <p>To fix this <a class="external-link" data-card-appearance="inline"
+                            href="https://developers.facebook.com/docs/facebook-login/web/"
+                            rel="nofollow">https://developers.facebook.com/docs/facebook-login/web/</a> &gt; Enable
+                        JavaScript SDK for Facebook Login</p>
+                    <p />
+                    <ol start="2">
+                        <li>
+                            <p><code>collect-social-reviews</code> runs in admin at 11:00 p.m. every day.</p>
+                            <ol start="1">
+                                <li>
+                                    <p>This seems to be broken as, </p>
+                                    <ol start="1">
+                                        <li>
+                                            <p>if <strong>fbAccessToken </strong>is expired the system tries to refresh,
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>if <strong>fbAccessToken </strong>is missing then it sends an email to
+                                                account’s admin_email. I tried this on stage1 accountId:14 - there was
+                                                no email received at <a class="external-link"
+                                                    href="mailto:sean.w@intiveo.com"
+                                                    rel="nofollow">sean.w@intiveo.com</a> (accounts.email ATM)</p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>For all other cases if something goes wrong catch statement handles the error and
+                                        logs in <code>#eng_auto_info_bugs</code> channel. The last error we had at <a
+                                            class="external-link"
+                                            href="https://intiveo.slack.com/archives/C0395QVJ885/p1661490051553039"
+                                            rel="nofollow">Aug 26th, 2022 at 1:00 AM</a>.</p>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p />
+                    <p />
+                    <p>In the case of <strong>2.a.ii</strong><br />Most probably, As <strong>Messages </strong>&gt;
+                        <strong>Social Reviews</strong> &gt; <strong>Setup </strong>&gt; <strong>Social Media
+                            Accounts</strong> is not configured for jsDSK, a user will not be able to disconnect/connect
+                        it again.</p>
+                    <p />
+                    <h1 id="FacebookIntegration-FacebookGraphAPI"><img class="emoticon emoticon-blue-star"
+                            data-emoji-id="2753" data-emoji-shortname=":question:" data-emoji-fallback="❓"
+                            src="images/icons/emoticons/72/2753.png" width="16" height="16"
+                            data-emoticon-name="blue-star" alt="(blue star)" /> Facebook Graph API <img
+                            class="emoticon emoticon-blue-star" data-emoji-id="2753" data-emoji-shortname=":question:"
+                            data-emoji-fallback="❓" src="images/icons/emoticons/72/2753.png" width="16" height="16"
+                            data-emoticon-name="blue-star" alt="(blue star)" /> </h1>
+                    <p />
+                    <p>yes, we use this API, and the version can be updated by updating .env variable value
+                        <code>FACEBOOK_DEFAULT_GRAPH_VERSION</code></p>
+                    <p />
+                    <p><a class="external-link" href="https://developers.facebook.com/support/bugs/780004130341035"
+                            rel="nofollow">https://developers.facebook.com/support/bugs/780004130341035</a></p>
+                    <div class="confluence-information-macro confluence-information-macro-note"><span
+                            class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span>
+                        <div class="confluence-information-macro-body">
+                            <p>Even though we update the version the code will not work until we fix the JSSDK problem.
+                            </p>
+                        </div>
                     </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            nidhi.g : Facebook Integration
-                        </span>
-                    </h1>
+                    <p>Furthermore, the JSSDK problem is due to missing permission: <code>business_management</code>.
+                        This permission needs <code>advanced_access</code>, which requires <strong>App Reviews</strong>
+                        from Facebook.</p>
+                    <p />
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                            
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Nidhi Gajera</span>, last modified on 16 May 2025
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Confirm if the credentials are correct,<br/><strong>lastpass </strong>vs <strong>envs</strong></p><p><br/>Facebook integration is being used for social reviews as below:<br/>1. <strong>Messages </strong>&gt; <strong>Social Reviews</strong> &gt; <strong>Setup </strong>&gt; <strong>Social Media Accounts</strong></p><p style="margin-left: 30.0px;">We determine and display if it’s connected or not.</p><p>To fix this <a class="external-link" data-card-appearance="inline" href="https://developers.facebook.com/docs/facebook-login/web/" rel="nofollow">https://developers.facebook.com/docs/facebook-login/web/</a>  &gt; Enable JavaScript SDK for Facebook Login</p><p /><ol start="2"><li><p><code>collect-social-reviews</code> runs in admin at 11:00 p.m. every day.</p><ol start="1"><li><p>This seems to be broken as, </p><ol start="1"><li><p>if <strong>fbAccessToken </strong>is expired the system tries to refresh, </p></li><li><p>if <strong>fbAccessToken </strong>is missing then it sends an email to account’s admin_email. I tried this on stage1 accountId:14 - there was no email received at <a class="external-link" href="mailto:sean.w@intiveo.com" rel="nofollow">sean.w@intiveo.com</a> (accounts.email ATM)</p></li></ol></li><li><p>For all other cases if something goes wrong catch statement handles the error and logs in <code>#eng_auto_info_bugs</code> channel. The last error we had at <a class="external-link" href="https://intiveo.slack.com/archives/C0395QVJ885/p1661490051553039" rel="nofollow">Aug 26th, 2022 at 1:00 AM</a>.</p></li></ol></li></ol><p /><p /><p>In the case of <strong>2.a.ii</strong><br/>Most probably, As <strong>Messages </strong>&gt; <strong>Social Reviews</strong> &gt; <strong>Setup </strong>&gt; <strong>Social Media Accounts</strong> is not configured for jsDSK, a user will not be able to disconnect/connect it again.</p><p /><h1 id="FacebookIntegration-FacebookGraphAPI"><img class="emoticon emoticon-blue-star" data-emoji-id="2753" data-emoji-shortname=":question:" data-emoji-fallback="❓" src="images/icons/emoticons/72/2753.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/> Facebook Graph API <img class="emoticon emoticon-blue-star" data-emoji-id="2753" data-emoji-shortname=":question:" data-emoji-fallback="❓" src="images/icons/emoticons/72/2753.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/> </h1><p /><p>yes, we use this API, and the version can be updated by updating .env variable value <code>FACEBOOK_DEFAULT_GRAPH_VERSION</code></p><p /><p><a class="external-link" href="https://developers.facebook.com/support/bugs/780004130341035" rel="nofollow">https://developers.facebook.com/support/bugs/780004130341035</a></p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Even though we update the version the code will not work until we fix the JSSDK problem.</p></div></div><p>Furthermore, the JSSDK problem is due to missing permission: <code>business_management</code>. This permission needs <code>advanced_access</code>, which requires <strong>App Reviews</strong> from Facebook.</p><p />
-                    </div>
 
-                    
-                                                      
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on 06 Jun 2025 20:18</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
             </div>
-        </div>     </body>
+        </div>
+        <div id="footer" role="contentinfo">
+            <section class="footer-body">
+                <p>Document generated by Confluence on 06 Jun 2025 20:18</p>
+                <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+            </section>
+        </div>
+    </div>
+</body>
+
 </html>
