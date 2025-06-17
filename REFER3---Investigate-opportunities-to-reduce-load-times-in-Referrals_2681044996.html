@@ -8,7 +8,9 @@
 </head>
 
 <body class="theme-default aui-theme-default">
-    <div id="main-header">
+    <div id="page">
+        <div id="main" class="aui-page-panel">
+            <div id="main-header">
                 <div id="breadcrumb-section" class="breadcrumb-section">
                     <ul id="breadcrumbs" class="breadcrumbs">
                         <li class="first">
@@ -22,36 +24,41 @@
                     </span>
                 </h1>
             </div>
-    <div id="main-content" class="wiki-content group">
-        <h2>Opportunities to improve</h2>
-        <h3>Quick investigations</h3>
-        <ul>
-            <li>Referral patient reports are mainly rendered using jQuery. Make sure to always commit minified JS
-                compiled files.</li>
-            <li>Select only required columns and use eager-loading.</li>
-        </ul>
+            <div id="main-content" class="wiki-content group">
+                <h2>Opportunities to improve</h2>
+                <h3>Quick investigations</h3>
+                <ul>
+                    <li>Referral patient reports are mainly rendered using jQuery. Make sure to always commit minified
+                        JS
+                        compiled files.</li>
+                    <li>Select only required columns and use eager-loading.</li>
+                </ul>
 
-        <h3>Deep investigations</h3>
-        <ul>
-            <li>
-                A query to filter out referrals belonging to accounts whose status is <strong>Hidden</strong>,
-                <strong>Denied</strong>, or <strong>Hidden and Awaiting approval</strong> is running multiple times on a
-                pivot table to fetch <code>referral_account_status_id</code>.<br>
-                See:
-                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-321"
-                    target="_blank">ReferralManagementRepository.php#L321</a>
-                and
-                <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-401"
-                    target="_blank">ReferralManagementRepository.php#L401</a>
-            </li>
-            <li>
-                Simplify this by eager loading those relations and finding status later when looping through the
-                referrals. This will fetch all the partner offices of a sender for each referral, which can be monitored
-                and improved (by using <code>session_account_id</code>) in the future if it’s causing trouble.
-            </li>
-        </ul>
-        <div class="note">
-            <strong>Note:</strong> Monitor the impact of eager loading and optimize further if necessary.
+                <h3>Deep investigations</h3>
+                <ul>
+                    <li>
+                        A query to filter out referrals belonging to accounts whose status is <strong>Hidden</strong>,
+                        <strong>Denied</strong>, or <strong>Hidden and Awaiting approval</strong> is running multiple
+                        times on a
+                        pivot table to fetch <code>referral_account_status_id</code>.<br>
+                        See:
+                        <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-321"
+                            target="_blank">ReferralManagementRepository.php#L321</a>
+                        and
+                        <a href="https://bitbucket.org/easymarkit/admin/src/9737b8ffa292910fd357a273592daee624e7fd90/app/Repositories/ReferralManagementRepository.php#lines-401"
+                            target="_blank">ReferralManagementRepository.php#L401</a>
+                    </li>
+                    <li>
+                        Simplify this by eager loading those relations and finding status later when looping through the
+                        referrals. This will fetch all the partner offices of a sender for each referral, which can be
+                        monitored
+                        and improved (by using <code>session_account_id</code>) in the future if it’s causing trouble.
+                    </li>
+                </ul>
+                <div class="note">
+                    <strong>Note:</strong> Monitor the impact of eager loading and optimize further if necessary.
+                </div>
+            </div>
         </div>
     </div>
 </body>
